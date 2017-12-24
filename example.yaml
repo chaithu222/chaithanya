@@ -1,0 +1,12 @@
+---
+  - hosts: all
+    remote_user: ansible
+    become: yes
+    become_method: sudo
+    connection: ssh
+    gather_facts: yes
+    tasks:
+
+      - name: Copy file.role1 to host1
+        copy: src=file2 dest=/opt/file2
+        when: inventory_hostname == "chaithu2226.mylabserver.com"
