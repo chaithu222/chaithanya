@@ -1,9 +1,15 @@
 ---
   - hosts: all
-    become_user: ansible
+    become_user: eiadmin
     become_method: sudo
     gather_facts: true
     connection: ssh
+
     tasks:
-      - name: create new directory
-        file: path=/opt/chaithu state=directory
+      - name: create amq broker path
+        file:
+          path: "{{ amq_broker_path }}"
+          owner: "eiadmin"
+          group: "eiadmin"
+          mode: 0744
+          state: directory
